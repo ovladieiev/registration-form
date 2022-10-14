@@ -86,8 +86,8 @@ function App() {
     const correctFullName = values.fullName.toLowerCase().split(" ").map(word=>word[0].toUpperCase()+word.slice(1)).join(" ")
     const correctUsername = values.username.toLowerCase()
     setValues(prevValues=>({...prevValues, fullName: correctFullName, username: correctUsername}))
-    localStorage.setItem("regForm", JSON.stringify({...values, fullName: correctFullName, username: correctUsername /* password: "", confirmPassword: "" */}))
-    alert(`Full name: ${values.fullName}\nUsername: ${values.username}\nEmail: ${values.email}\nDate of bitrh: ${values.birthday}\n${values.isAgree ? "You are agreed to the terms\n" : ""}Your data is saved`)
+    localStorage.setItem("regForm", JSON.stringify({...values, fullName: correctFullName, username: correctUsername, isAgree: false}))
+    alert(`Full name: ${values.fullName}\nUsername: ${values.username}\nEmail: ${values.email}\nDate of bitrh: ${values.birthday}\nPassword: ${values.password}\nConfirmed password: ${values.confirmPassword}\nYou are agreed to the terms\n--Your data is saved--`)
   }
 
   return (
@@ -106,6 +106,7 @@ function App() {
             checked={values.isAgree}
             name="isAgree"
             onChange={onChange}
+            required = "true"
           />
           <label>I am agree to the <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title='Definitely not a rickroll link' target="_blank" rel="noreferrer">terms</a></label>
         <button>Submit</button>
