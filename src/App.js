@@ -90,25 +90,27 @@ function App() {
     alert(`Full name: ${values.fullName}\nUsername: ${values.username}\nEmail: ${values.email}\nDate of bitrh: ${values.birthday}\nPassword: ${values.password}\nConfirmed password: ${values.confirmPassword}\nYou are agreed to the terms\n--Your data is saved--`)
   }
 
+  const inputElements = inputs.map(input => (
+    <FormInput 
+      key={input.id} 
+      {...input}
+      value={values[input.name]}
+      onChange={onChange}
+    />))
+
   return (
     <div className="app">
       <form onSubmit={handleSubmit}>
         <h1>Registration</h1>
-        {inputs.map(input => (
-          <FormInput 
-            key={input.id} 
-            {...input}
-            value={values[input.name]}
-            onChange={onChange}
-          />))}
-          <input
-            type="checkbox"
-            checked={values.isAgree}
-            name="isAgree"
-            onChange={onChange}
-            required = "true"
-          />
-          <label>I am agree to the <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title='Definitely not a rickroll link' target="_blank" rel="noreferrer">terms</a></label>
+        {inputElements}
+        <input
+          type="checkbox"
+          checked={values.isAgree}
+          name="isAgree"
+          onChange={onChange}
+          required = "true"
+        />
+        <label><i>I am agree to the <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title='Definitely not a rickroll link' target="_blank" rel="noreferrer">terms</a></i></label>
         <button>Submit</button>
       </form>
     </div>
